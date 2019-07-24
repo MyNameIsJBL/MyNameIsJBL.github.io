@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>&#39;Spring-扩展&#39; | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ApplicationContext  包含BeanFactory所有功能，绝大多数典型的企业应用和系统，ApplicationContext就是你需要使用的  在使用BeanFactory接口时，我们一般都是使用这个实现类：XmlBeanFactory。   然而ApplicationContext作为BeanFactory的子接口，使用它作为Spring容器会更加方便。它的实现类有：FileS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="&#39;Spring-扩展&#39;">
+<meta property="og:url" content="http://yoursite.com/2019/04/12/Spring-扩展/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="ApplicationContext  包含BeanFactory所有功能，绝大多数典型的企业应用和系统，ApplicationContext就是你需要使用的  在使用BeanFactory接口时，我们一般都是使用这个实现类：XmlBeanFactory。   然而ApplicationContext作为BeanFactory的子接口，使用它作为Spring容器会更加方便。它的实现类有：FileS">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-24T18:19:48.713Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="&#39;Spring-扩展&#39;">
+<meta name="twitter:description" content="ApplicationContext  包含BeanFactory所有功能，绝大多数典型的企业应用和系统，ApplicationContext就是你需要使用的  在使用BeanFactory接口时，我们一般都是使用这个实现类：XmlBeanFactory。   然而ApplicationContext作为BeanFactory的子接口，使用它作为Spring容器会更加方便。它的实现类有：FileS">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Spring-扩展" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/12/Spring-扩展/" class="article-date">
+  <time datetime="2019-04-12T05:02:28.000Z" itemprop="datePublished">2019-04-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      &#39;Spring-扩展&#39;
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ApplicationContext</p>
+<blockquote>
+<p>包含BeanFactory所有功能，绝大多数典型的企业应用和系统，ApplicationContext就是你需要使用的</p>
+</blockquote>
+<pre><code>在使用BeanFactory接口时，我们一般都是使用这个实现类：XmlBeanFactory。  
+然而ApplicationContext作为BeanFactory的子接口，使用它作为Spring容器会更加方便。它的实现类有：FileSystemXmlApplicationContext、ClassPathXmlApplicationContext、AnnotationConfigApplicationContext。
+创建Spring容器实例时，必须提供Spring容器管理的Bean的详细配置信息。Spring的配置信息通常采用xml配置文件来设置，因此，创建BeanFactory实例时，应该提供XML配置文件作为参数。
+XML配置文件通常使用Resource对象传入。Resource接口是Spring提供的资源访问接口，通过使用该接口，Spring能够以简单、透明的方式访问磁盘、类路径以及网络上的资源。
+如果应用里面有多个属性配置文件，则应该采用BeanFactory的子接ApplicationContext来创建BeanFactory的实例。
+ApplicationContext通常使用如下两个实现类：
+FileSystemXmlApplicationContext：以基于文件系统的XML配置文件创建ApplicationContext实例。
+ClassPathXmlApplicationContext：以类加载路径下的XML配置文件创建的ApplicationContext实例。</code></pre><p>AbstractApplicationContext<br>refresh方法  </p>
+<pre><code>（1）初始化前的准备工作，例如对系统属性或者环境变量进行准备及 验证。
+      在某种情况下项目的使用需要读取某些系统变量，二这个变量的设置很可能会影响系统的正确性，那么ClassPathXmlApplicationContext为我们提供的这个准备函数就显得非常必要，它可以在Spring启动的时候提前对必须的变量进行存在性验证。
+（2）初始化BeanFactory，并进行XML文件读取。
+  之前有提到ClassPathXmlApplicationContext包含着BeanFactory所提供的一切特征，那么这一步骤中将会复用BeanFactory中的配置文件读取解析及其它功能，这一步之后，ClassPathXmlApplicationContext实际上就已经包含了BeanFactory所提供的功能，也就是可以进行Bean的提取等基础操作了。
+（3）对BeanFactory进行各种功能填充。
+    是否允许bean覆盖，是否允许循环依赖等。
+（4）子类覆盖方法做额外的处理
+  Spring之所以强大，为世人所推崇，除了它功能上为大家提供了便利外，还有一方面是它的完美架构，开放式的架构让使用它的程序员很容易根据业务需要扩展已经存在的功能。这种开放式的设计在Spring中随处可见，例如在本例中就提供了一个空的函数实现postProcessBeanFactory来方便程序员在业务上做进一步的扩展。
+（5）激活各种BeanFactory处理器
+（6）注册拦截bean创建的bean处理器，这里只是注册，真正的调  用是在getBean时候。
+（7）为上下文初始化Message源，即对不同语言的消息体进行国际化处理。
+（8）初始化应用消息广播器，并放入“applicationEventMulticaster” bean中。
+（9）留给子类来初始化其它的bean。
+（10）在所有注册的bean中查找listener bean，注册到消息广播器中。
+（11）初始化剩下的单实例（非惰性的）.
+（12）完成刷新过程，通知生命周期处理器lifecycleProcessor刷新过程，同时发出ContextRefreshEvent通知别人。
+
+BeanFactoryPostProcessor接口跟BeanPostProcessor类似，可以对bean的定义（配置元数据）进行处理。也就是说，Spring Ioc容器允许BeanFactoryPostProcessor在容器实例化任何其他的bean之前读取配置元数据，并有可能修改它。如果你愿意，你可以配置多个BeanFactoryPostProcessor。你还能通过设置order属性来控制BeanFactoryPostProcessor的执行次序（仅当BeanFactoryPostProcessor实现了ordered接口时你才可以设置此属性，因此在实现BeanFactoryPostProcessor时，就应当考虑实现Ordered接口）。</code></pre><blockquote>
+<p>如果你想改变实际的bean实例（例如从配置元数据创建的对象），那么你最好使用BeanPostProcessor。同样，BeanFactoryPostProcessor的作用域范围是容器级的，它只和你所使用的容器有关。如果你在容器中定义一个BeanFactoryPostProcessor，它仅仅对此容器中的bean进行后置处理。BeanFactoryPostProcessor不会对定义在另一个容器中的bean进行后置处理，即使这两个容器都是在同一层次上。</p>
+</blockquote>
+<p>Aop（Aspect Oriented Programming）增强  </p>
+<blockquote>
+<p>静态代理：<br>程序运行前已存在代理类的字节码文件，代理类和原始类的关系在运行前已确定。<br>优点：<br>业务类只需要关注业务逻辑本身，保证了业务类的重用性。这是代理的共有优点。<br>缺点：<br>1）代理对象的一个接口只服务于一种类型的对象，如果要代理的方法很多，势必要为每一种方法都进行代理，静态代理在程序规模稍大时就无法胜任了。<br>2）如果接口增加一个方法，除了所有实现类需要实现这个方法外，所有代理类也需要实现此方法。增加了代码维护的复杂度。  </p>
+</blockquote>
+<blockquote>
+<p>动态代理：<br>动态代理类的源码是在程序运行期间通过JVM反射等机制动态生成，代理类和委托类的关系是运行时确定<br>Sprng动态代理两种方式 jdk和cglib<br>JDK提供的动态代理<br>被代理的对象必须要有接口<br>①被代理类实现接口<br>②代理类实现InvocationHandler接口<br>③通过Proxy.newProxyInstance创建代理对象<br>④重写InvocationHandler接口的invoker方法，实现在不修改原来代码的前提下动态扩展<br>cglib提供的动态代理<br>通过继承方式<br>proxy-target-class此属性默认为false，改为true开启cglib</p>
+</blockquote>
+<pre><code>&lt;aop:aspectj-autoproxy proxy-target-class=&quot;true&quot;/&gt;</code></pre><blockquote>
+<p>因为是继承，所以final类或方法不能代理</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/12/Spring-扩展/" data-id="cjyhhnczj000374l1drlzmkf1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/12/Spring-SpringMVC/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          &#39;Spring-SpringMVC&#39;
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/12/Spring-解析与加载/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">&#39;Spring-解析与加载&#39;</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/12/Spring-SpringBoot/">&#39;Spring-SpringBoot&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/Spring-SpringMVC/">&#39;Spring-SpringMVC&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/Spring-扩展/">&#39;Spring-扩展&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/Spring-解析与加载/">&#39;Spring-解析与加载&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/单元测试/">&#39;单元测试&#39;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

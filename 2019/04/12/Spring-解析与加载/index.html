@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>&#39;Spring-解析与加载&#39; | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="思考为什么要用Spring？ 1.方便解耦，便于开发（Spring就是一个大工厂，可以将所有对象的创建和依赖关系维护都交给spring管理）2.spring支持aop（Aspect Oriented Programming）（spring提供面向切面编程，可以很方便的实现对程序进行权限拦截和运行监控等功能）3.声明式事务的支持（通过配置就完成对事务的支持，不需要手动编程）4.方便集成各种优秀的框架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="&#39;Spring-解析与加载&#39;">
+<meta property="og:url" content="http://yoursite.com/2019/04/12/Spring-解析与加载/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="思考为什么要用Spring？ 1.方便解耦，便于开发（Spring就是一个大工厂，可以将所有对象的创建和依赖关系维护都交给spring管理）2.spring支持aop（Aspect Oriented Programming）（spring提供面向切面编程，可以很方便的实现对程序进行权限拦截和运行监控等功能）3.声明式事务的支持（通过配置就完成对事务的支持，不需要手动编程）4.方便集成各种优秀的框架">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/04/12/Spring-解析与加载/01.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/12/Spring-解析与加载/02.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/12/Spring-解析与加载/03.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/12/Spring-解析与加载/04.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/12/Spring-解析与加载/05.png">
+<meta property="og:updated_time" content="2019-07-24T18:09:13.096Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="&#39;Spring-解析与加载&#39;">
+<meta name="twitter:description" content="思考为什么要用Spring？ 1.方便解耦，便于开发（Spring就是一个大工厂，可以将所有对象的创建和依赖关系维护都交给spring管理）2.spring支持aop（Aspect Oriented Programming）（spring提供面向切面编程，可以很方便的实现对程序进行权限拦截和运行监控等功能）3.声明式事务的支持（通过配置就完成对事务的支持，不需要手动编程）4.方便集成各种优秀的框架">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/12/Spring-解析与加载/01.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Spring-解析与加载" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/12/Spring-解析与加载/" class="article-date">
+  <time datetime="2019-04-12T05:02:28.000Z" itemprop="datePublished">2019-04-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      &#39;Spring-解析与加载&#39;
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>思考为什么要用Spring？</p>
+<p>1.方便解耦，便于开发（Spring就是一个大工厂，可以将所有对象的创建和依赖关系维护都交给spring管理）<br>2.spring支持aop（Aspect Oriented Programming）（spring提供面向切面编程，可以很方便的实现对程序进行权限拦截和运行监控等功能）<br>3.声明式事务的支持（通过配置就完成对事务的支持，不需要手动编程）<br>4.方便集成各种优秀的框架（MyBatis、Hibernate、Quartz等）<br>5.降低javaEE API的使用难度（Spring 对javaEE开发中非常难用的一些API 例如JDBC,javaMail,远程调用等，都提供了封装，使这些API应用难度大大降低）<br>6.方便程序的测试，spring 对junit4支持，可以通过注解方便的测试spring 程序</p>
+<p>Spring强大的背景：<br>从2004年1.0版本发布到2013年 Pivotal宣布发布Spring4.0，到2017 5.0版本，<br>PS：Pivotal（公司相关产品Springboot、SpringCloud、RabbitMQ、Greenplum、Redis等，汇集全球一流开发者）  </p>
+<p>Spring之前的历史<br>在Spring框架没有开发出来时，Java EE是以Sun公司（已经被Oracle公司收购，不复存在）所制定的EJB（Enterprise Java Bean）作为标准的。</p>
+<p>在“遥远”的EJB年代，开发一个EJB需要大量的接口和配置文件，直至EJB 2.0的年代，开发一个EJB还需要配置两个文件，其结果就是配置的工作量比开发的工作量还要大。<br>其次EJB是运行在EJB容器中的，而Sun公司定义的JSP和Servlet却是运行在Web容器中的，于是你可以想象得到，你需要使用Web容器去调用EJB容器的服务。这就意味着存在以下的弊端：需要增加调用的配置文件才能让Web容器调用EJB容器；与此同时需要开发两个容器，非常多的配置内容和烦琐的规范导致开发效率十分低下，这非常让当时的开发者诟病；对于Web容器调用EJB容器的服务这种模式，注定了需要通过网络传递，造成性能不佳；对于测试人员还需要了解许多EJB烦琐的细节，才能进行配置和测试，这样测试也难以进行。</p>
+<p>传统方式和Spring方式对比：<br>      传统方式：决定使用哪一个具体实现是由应用程序负责的，在编译阶段就确定了。<br>      Spring方式：调用类只依赖接口，而不依赖具体的实现类，减少了耦合。控制权交给了容器，在运行期才由容器决定将具体的实现动态的“注入”到调用类的对象中。这也是使用IoC的根本原因。</p>
+<hr>
+<p>第一个Spring程序<br>1、Spring jar包依赖  </p>
+<pre><code>&lt;dependency&gt;
+&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+&lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+&lt;version&gt;  {spring.version}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre><p>2、bean.xml配置  </p>
+<pre><code>&lt;bean class=&quot;com.sf.first.spring.Hello&quot;/&gt;</code></pre><p>3、bean加载应用  </p>
+<pre><code>public class XmlBeanFactoryDemo {
+public static void main(String[] args) {
+    BeanFactory bf = new XmlBeanFactory(new ClassPathResource(&quot;bean.xml&quot;));
+    Hello hello = bf.getBean(Hello.class);
+    hello.sayHello();
+ }
+}</code></pre><hr>
+<p>核心类介绍<br>先了解下BeanFactory与FactoryBean<br>1、工厂Bean 即 FactoryBean。FactoryBean跟普通Bean不同，其返回的对象不是指定类的一个实例，而是该FactoryBean的getObject方法所返回的对象。传统的方式需要在<bean>中提供大量配置信息，配置方式灵活受限，这时采用编码方式会得到一个简单的方案，可实现该接口定制实例化bean逻辑。<br>2、BeanFactory，以Factory结尾，表示它是一个工厂类(接口)，用于管理Bean的一个工厂。在Spring中，BeanFactory是IOC容器的核心接口，它的职责包括：实例化、定位、配置应用程序中的对象及建立这些对象间的依赖。<br>DefaultListableBeanFactory 是整个 Bean 加载的核心部分，是 Spring 注册及加载 Bean 的默认实现，XmlBeanFactory 继承自 DefaultListableBeanFactory ，XmlBeanFactory 自定义了 XML 读取器 XmlBeanDefinitionReader,实现了个性化的 BeanDefinitionReader 读取。</bean></p>
+<img src="/2019/04/12/Spring-解析与加载/01.png" title="DefaultListableBeanFactory">
+
+<p>XmlBeanDefinitionReader</p>
+<img src="/2019/04/12/Spring-解析与加载/02.png" title="DefaultListableBeanFactory">
+
+<p>Xml 配置文件读取大致流程：<br>1、通过继承自AbstractBeanDefinitionReader中的方法，来使用 ResourLoader将资源文件路径转换对应的Resource文件;<br>2、通过DocumentLoader对Resource文件进行转换，将Resource文件转换为Document文件<br>3、通过实现BeanDefinitionDocumentReader的 DefaultBeanDefinitionDocumentReader类对Docment进行解析，并使用BeanDefinitionPareserDelegate对Element进行解析</p>
+<p>如何实现自定义的标签<br>1.创建需要扩展的组件<br>2.定义XSD文件描述组件内容<br>3.创建一个文件，实现BeanDefinitionParser接口，用来解析XSD文件中的定义和组件定义<br>4.创建Handler文件，扩展字NamespaceHandlerSupport,目的是将组件注册到Spring容器<br>5.编写Spring.handlers和Spring.schemas文件（通过这找到Handler、xsd文件）  </p>
+<hr>
+<p>Bean的加载  </p>
+<img src="/2019/04/12/Spring-解析与加载/03.png" title="DefaultListableBeanFactory">
+
+<pre><code>1）转换对应beanName  
+为什么需要转换beanName呢？因为传入的参数可能是别名，也可能是FactoryBean，所以需要一系列的解析，这些解析内容包括如下
+去除FactoryBean的修饰符，也就是如果name=&quot;&amp;aa&quot;,name会首先去除&amp;而使name=&quot;aa&quot;
+取指定alias所表示的最终beanName,例如别名A指向名称为B的bean则返回B；若别名A指向别名B，别名C又指向名称为C的bean则返回C。  
+2）尝试从缓存中加载实例
+单例在Spring的同一个容器中只会被创建一次，后续再获取bean,就直接从单例缓存中获取了。当然这里也只是尝试加载，首先尝试从缓存中加载，如果加载不成功则再次尝试从singletonFactories中加载，因为在创建单例bean的时候会存在依赖注入的情况。而在创建依赖的时候为了避免循环依赖，在Spring中创建bean的原则是不等bean创建完成就会将创建bean的ObjectFactory提早曝光加入到缓存中，一旦下一个bean创建时候需要依赖上一个bean则直接使用ObjectFactory。  
+3）bean的实例化
+如果从缓存中得到了bean的原始状态，则需要对bean进行实例化。缓存中记录的只是最原始的bean状态，并不一定是我们最终想要的bean,。例如win需要对工厂bean进行处理，那么这里得到的其实是工厂bean的初始状态，但是我们真正需要的是工厂bean中定义的factory-method方法中返回的bean,而getObjectForBeanInstance就是完成这个工作的。
+4）原型模式的依赖检查  
+只有在单例情况下才会尝试解决循环依赖，如果存在A中有B的属性，B中有A额的属性，那么当依赖注入的时候，就会产生当A还未创建完的时候因为对于B的创建再次返回创建A，造成循环依赖，也就是情况  isPrototypeCurrentlyInCreation(beanName)判断为true  
+5）检测parentBeanFactory  
+如果缓存没有数据的话直接转到父类工厂上去加载了,这是为什么呢？
+前提条件是：parentBeanFactory!=null&amp;&amp;!containsBeanDefinition(beanName)，parentBeanFactory!=null。parentBeanFactory如果为空，则其他一切都是浮云。最重要的是！containsBeanDefinition(beanName)，它是在检测如果当前加载的XML配置文件中不包含beanName所对应的配置就只能到parentBeanFactory去尝试下，然后再去递归调用getBean方法  
+6）将存储XML配置文件的GernericBeanDefinition转换为RootBeanDefinition  
+因为从XML配置文件中读取到的Bean信息存储在GernericBeanDefinition中的，但是所有的Bean后续处理都是针对于RootBeanDefinition的，所以这里需要进行一个转换，转换的同时如果父类bean不为空的话，则会一并合并父类的属性。  
+7）寻找依赖  
+因为bean的初始化过程中很可能会用到某些属性，而某些属性很可能是动态配置的，并且配置成依赖于其他的bean,那么这个时候就有必要先加载依赖的bean,所以在spring加载顺序中，在初始化某一个bean的时候首先会初始化这个bean所对应的依赖  
+8）针对不同的scope进行bean的创建  
+9）类型转换</code></pre><img src="/2019/04/12/Spring-解析与加载/04.png" title="DefaultListableBeanFactory">
+<img src="/2019/04/12/Spring-解析与加载/05.png" title="DefaultListableBeanFactory">
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/12/Spring-解析与加载/" data-id="cjyhhnczm000474l1r4ec1i17" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/12/Spring-扩展/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          &#39;Spring-扩展&#39;
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/12/单元测试/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">&#39;单元测试&#39;</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/12/Spring-SpringBoot/">&#39;Spring-SpringBoot&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/Spring-SpringMVC/">&#39;Spring-SpringMVC&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/Spring-扩展/">&#39;Spring-扩展&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/Spring-解析与加载/">&#39;Spring-解析与加载&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/单元测试/">&#39;单元测试&#39;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

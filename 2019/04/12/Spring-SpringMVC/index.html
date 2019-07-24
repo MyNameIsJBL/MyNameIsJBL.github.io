@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>&#39;Spring-SpringMVC&#39; | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="SpringMVC是什么？    springmvc给spring的表现层提供支持请求驱动类型的轻量级Web框架使用了MVC架构模式的思想，将Web层进行职责解耦    核心类介绍ContextLoaderListener  ContextLoaderListener继承自ContextLoader并且实现了ServletContextListener接口，实现ServletContextLis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="&#39;Spring-SpringMVC&#39;">
+<meta property="og:url" content="http://yoursite.com/2019/04/12/Spring-SpringMVC/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="SpringMVC是什么？    springmvc给spring的表现层提供支持请求驱动类型的轻量级Web框架使用了MVC架构模式的思想，将Web层进行职责解耦    核心类介绍ContextLoaderListener  ContextLoaderListener继承自ContextLoader并且实现了ServletContextListener接口，实现ServletContextLis">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-24T18:24:32.023Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="&#39;Spring-SpringMVC&#39;">
+<meta name="twitter:description" content="SpringMVC是什么？    springmvc给spring的表现层提供支持请求驱动类型的轻量级Web框架使用了MVC架构模式的思想，将Web层进行职责解耦    核心类介绍ContextLoaderListener  ContextLoaderListener继承自ContextLoader并且实现了ServletContextListener接口，实现ServletContextLis">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Spring-SpringMVC" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/12/Spring-SpringMVC/" class="article-date">
+  <time datetime="2019-04-12T05:02:28.000Z" itemprop="datePublished">2019-04-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      &#39;Spring-SpringMVC&#39;
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>SpringMVC是什么？  </p>
+</blockquote>
+<p>springmvc给spring的表现层提供支持<br>请求驱动类型的轻量级Web框架<br>使用了MVC架构模式的思想，将Web层进行职责解耦  </p>
+<blockquote>
+<p>核心类介绍<br>ContextLoaderListener</p>
+</blockquote>
+<p>ContextLoaderListener继承自ContextLoader并且实现了ServletContextListener接口，实现ServletContextListener作用不言而喻，就是要让Spring和Servlet容器关联起来，让Spring容器伴随着Servlet容器的启动而启动，其实这个类中最主要的一个方法就是contextInitialized()，作用就是Spring上下文初始化</p>
+<p>ContextLoaderListener的作用就是启动Web容器时，读取在contextConfigLocation中定义的xml文件，自动装配ApplicationContext的配置信息，并产生WebApplicationContext对象，然后将这个对象放置在ServletContext的属性里，这样我们只要得到Servlet就可以得到WebApplicationContext对象，并利用这个对象访问spring容器管理的bean。</p>
+<blockquote>
+<p>核心类介绍 DispatcherServlet</p>
+</blockquote>
+<p>DispatcherServlet是前置控制器，配置在web.xml文件中的。拦截匹配的请求，Servlet拦截匹配规则要自己定义，把拦截下来的请求，依据相应的规则分发到目标Controller来处理，是配置spring MVC的第一步。<br>DispatcherServlet是前端控制器设计模式的实现，提供Spring Web MVC的集中访问点，而且负责职责的分派，而且与Spring IoC容器无缝集成，从而可以获得Spring的所有好处。<br>1 初始化<br>1.1 HttpServletBean 的 init() 方法<br>DispatcherServlet 的 init() 方法在其父类 HttpServletBean 中实现的，它覆盖了 GenericServlet 的 init() 方法，主要作用是加载 web.xml 中 DispatcherServlet 的 <init-param> 配置，并调用子类的初始化。<br>1.2 FrameworkServlet 的 initServletBean() 方法<br>在 HttpServletBean 的 init() 方法中调用了 initServletBean() 这个方法，它是在 FrameworkServlet 类中实现的，主要作用是建立 WebApplicationContext 容器（有时也称上下文），并加载 SpringMVC 配置文件中定义的 Bean 到该容器中，最后将该容器添加到 ServletContext 中。<br>WebApplicationContext 继承于 ApplicationContext 接口，从容器中可以获取当前应用程序环境信息，它也是 SpringMVC 的 IOC 容器。<br>1.3建立好 WebApplicationContext(上下文) 后，通过 DispatcherServlet 的onRefresh(ApplicationContext context) 方法回调，进入 DispatcherServlet 类中。onRefresh() 方法，提供 SpringMVC 的初始化，onRefresh() 中的initStrategies方法下一页PPT详细介绍。</init-param></p>
+<blockquote>
+<p>DispatcherServlet ：initStrategies方法初始化9大步</p>
+</blockquote>
+<p>1、initMultipartResolver：初始化MultipartResolver，用于处理文件上传服务，如果有文件上传，那么就会将当前的HttpServletRequest包装成DefaultMultipartHttpServletRequest，并且将每个上传的内容封装成CommonsMultipartFile对象。需要在dispatcherServlet-servlet.xml中配置文件上传解析器。<br>2、initLocaleResolver：用于处理应用的国际化问题，本地化解析策略。<br>3、initThemeResolver：用于定义一个主题。<br>4、initHandlerMapping：用于定义请求映射关系。<br>5、initHandlerAdapters：用于根据Handler的类型定义不同的处理规则。<br>6、initHandlerExceptionResolvers：当Handler处理出错后，会通过此将错误日志记录在log文件中，默认实现类是SimpleMappingExceptionResolver。<br>7、initRequestToViewNameTranslators：将指定的ViewName按照定义的<br> RequestToViewNameTranslators替换成想要的格式。<br>8、initViewResolvers：用于将View解析成页面。<br>9、initFlashMapManager：用于生成FlashMap管理器。</p>
+<pre><code>DispatcherServlet ：实现了Servlet接口的实现类
+大致流程：
+Servlet容器加载Servlet类，把类的.class文件中的数据读到内存中；
+Servlet容器中创建一个ServletConfig对象。该对象中包含了Servlet的初始化配置信息；
+Servlet容器创建一个Servlet对象；
+Servlet容器调用Servlet对象的init()方法进行初始化</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/12/Spring-SpringMVC/" data-id="cjyhhncz6000274l1180dhcif" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/12/Spring-SpringBoot/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          &#39;Spring-SpringBoot&#39;
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/12/Spring-扩展/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">&#39;Spring-扩展&#39;</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/12/Spring-SpringBoot/">&#39;Spring-SpringBoot&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/Spring-SpringMVC/">&#39;Spring-SpringMVC&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/Spring-扩展/">&#39;Spring-扩展&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/Spring-解析与加载/">&#39;Spring-解析与加载&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/单元测试/">&#39;单元测试&#39;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

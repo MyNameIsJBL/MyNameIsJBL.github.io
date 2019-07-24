@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>&#39;Spring-SpringBoot&#39; | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="初识SpringBoot简单、快速、配置少，一个字形容：爽比起传统的Spring Web项目，它不需要下列如此多的步骤：  1. 配置web.xml，springmvc.xml和spring.xml 2. 配置数据库连接池，配置数据库事务等 3. 配置记录系统工作的日志 4. 配置加载系统运行时系统配置文件的读取 … 5. 代码编写完成后，需要部署到tomcat等运行环境上调试 6. 不支持持续">
+<meta property="og:type" content="article">
+<meta property="og:title" content="&#39;Spring-SpringBoot&#39;">
+<meta property="og:url" content="http://yoursite.com/2019/04/12/Spring-SpringBoot/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="初识SpringBoot简单、快速、配置少，一个字形容：爽比起传统的Spring Web项目，它不需要下列如此多的步骤：  1. 配置web.xml，springmvc.xml和spring.xml 2. 配置数据库连接池，配置数据库事务等 3. 配置记录系统工作的日志 4. 配置加载系统运行时系统配置文件的读取 … 5. 代码编写完成后，需要部署到tomcat等运行环境上调试 6. 不支持持续">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-24T18:36:28.186Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="&#39;Spring-SpringBoot&#39;">
+<meta name="twitter:description" content="初识SpringBoot简单、快速、配置少，一个字形容：爽比起传统的Spring Web项目，它不需要下列如此多的步骤：  1. 配置web.xml，springmvc.xml和spring.xml 2. 配置数据库连接池，配置数据库事务等 3. 配置记录系统工作的日志 4. 配置加载系统运行时系统配置文件的读取 … 5. 代码编写完成后，需要部署到tomcat等运行环境上调试 6. 不支持持续">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Spring-SpringBoot" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/12/Spring-SpringBoot/" class="article-date">
+  <time datetime="2019-04-12T05:02:28.000Z" itemprop="datePublished">2019-04-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      &#39;Spring-SpringBoot&#39;
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>初识SpringBoot<br>简单、快速、配置少，一个字形容：爽<br>比起传统的Spring Web项目，它不需要下列如此多的步骤：</p>
+</blockquote>
+<pre><code>1. 配置web.xml，springmvc.xml和spring.xml
+2. 配置数据库连接池，配置数据库事务等
+3. 配置记录系统工作的日志
+4. 配置加载系统运行时系统配置文件的读取
+…
+5. 代码编写完成后，需要部署到tomcat等运行环境上调试
+6. 不支持持续集成、持续部署等</code></pre><p>SpringBoot配置与加载机制</p>
+<blockquote>
+<p>起步依赖<br>本质上是一个Maven项目对象模型（Project Object Model， POM）， 定义了对其他库的传递依赖，这些东西加在一起即支持某项功能。 比如</p>
+</blockquote>
+<pre><code>spring-boot-dependencies
+spring-boot-parent
+spring-boot-starters
+spring-boot-starter-web  </code></pre><p>见名知义：起步依赖 = 起步依赖+依赖的传递依赖</p>
+<blockquote>
+<p>自动配置<br>习惯优于配置，按条件配置Bean</p>
+</blockquote>
+<p>配置文件application.properties属性有据可依，<br><a href="https://docs.spring.io/spring-boot/docs/2.1.0.RELEASE/reference/htmlsingle/#common-application-properties" target="_blank" rel="noopener">官方文档链接 https://docs.spring.io/spring-boot/docs/2.1.0.RELEASE/reference/htmlsingle/#common-application-properties</a> </p>
+<pre><code>是什么？
+Spring Boot的自动配置是应用程序启动时，spring boot框架自动检测 classpath里的Bean来进行配置的一种机制。
+怎么用？通过在配置类里使用@EnableAutoConfiguration 或者@SpringBootApplication注解 开启组件扫描和自动配置。 通过@SpringBootApplication的exclude参数关闭特定 的自动配置。@SpringBootApplication(exclude = XAutoConfiguration.class)
+怎么实现的？查看源码，下一页ppt
+spring-boot-autoconfigure-1.5.6.RELEASE.jar包 EnableAutoConfiguration
+使用@SpringbootApplication注解  可以解决根类或者配置类（就是main所在类）头上注解过多的问题，一个@SpringbootApplication相当于@Configuration,@EnableAutoConfiguration和 @ComponentScan 并具有他们的默认属性值
+
+怎么实现的？ 
+查看源码
+spring-boot-autoconfigure-1.5.6.RELEASE.jar包 EnableAutoConfiguration
+这里起关键作用的是@Import注解导入的配置功能。 EnableAutoConfigurationImportSelector使用SpringFactoriesLoader.loadFactoryNames 方法来扫描具有META-INF/spring.factories文件里的jar包，spring.factories文件中声明了 有哪些自动配置。 打开AutoConfiguration的Java源文件，可以看到有 @ConditionalOnClass @ConditionalOnBean @ConditionalOnMissingBean @ConditionalOnJava 等这些注解
+这些注解都是组合了@Conditional元注解，例如@ConditionalOnWebApplication注解</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/12/Spring-SpringBoot/" data-id="cjyhhncz2000174l1s14sj3lx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/12/Spring-SpringMVC/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">&#39;Spring-SpringMVC&#39;</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/12/Spring-SpringBoot/">&#39;Spring-SpringBoot&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/Spring-SpringMVC/">&#39;Spring-SpringMVC&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/Spring-扩展/">&#39;Spring-扩展&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/Spring-解析与加载/">&#39;Spring-解析与加载&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/单元测试/">&#39;单元测试&#39;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

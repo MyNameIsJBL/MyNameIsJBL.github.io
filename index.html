@@ -64,47 +64,63 @@
   
     <article id="post-Spring-SpringBoot" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/07/24/Spring-SpringBoot/" class="article-date">
-  <time datetime="2019-07-24T15:26:35.077Z" itemprop="datePublished">2019-07-24</time>
+    <a href="/2019/04/12/Spring-SpringBoot/" class="article-date">
+  <time datetime="2019-04-12T05:02:28.000Z" itemprop="datePublished">2019-04-12</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
-    <div class="article-entry" itemprop="articleBody">
-      
+      <header class="article-header">
         
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/24/Spring-SpringBoot/" data-id="cjyhgcrqk0001ukl1m1ugc92m" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
-</article>
-
-
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/12/Spring-SpringBoot/">&#39;Spring-SpringBoot&#39;</a>
+    </h1>
   
-    <article id="post-Spring-MybBatis整合" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/07/24/Spring-MybBatis整合/" class="article-date">
-  <time datetime="2019-07-24T15:25:45.413Z" itemprop="datePublished">2019-07-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
+
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <blockquote>
+<p>初识SpringBoot<br>简单、快速、配置少，一个字形容：爽<br>比起传统的Spring Web项目，它不需要下列如此多的步骤：</p>
+</blockquote>
+<pre><code>1. 配置web.xml，springmvc.xml和spring.xml
+2. 配置数据库连接池，配置数据库事务等
+3. 配置记录系统工作的日志
+4. 配置加载系统运行时系统配置文件的读取
+…
+5. 代码编写完成后，需要部署到tomcat等运行环境上调试
+6. 不支持持续集成、持续部署等</code></pre><p>SpringBoot配置与加载机制</p>
+<blockquote>
+<p>起步依赖<br>本质上是一个Maven项目对象模型（Project Object Model， POM）， 定义了对其他库的传递依赖，这些东西加在一起即支持某项功能。 比如</p>
+</blockquote>
+<pre><code>spring-boot-dependencies
+spring-boot-parent
+spring-boot-starters
+spring-boot-starter-web  </code></pre><p>见名知义：起步依赖 = 起步依赖+依赖的传递依赖</p>
+<blockquote>
+<p>自动配置<br>习惯优于配置，按条件配置Bean</p>
+</blockquote>
+<p>配置文件application.properties属性有据可依，<br><a href="https://docs.spring.io/spring-boot/docs/2.1.0.RELEASE/reference/htmlsingle/#common-application-properties" target="_blank" rel="noopener">官方文档链接 https://docs.spring.io/spring-boot/docs/2.1.0.RELEASE/reference/htmlsingle/#common-application-properties</a> </p>
+<pre><code>是什么？
+Spring Boot的自动配置是应用程序启动时，spring boot框架自动检测 classpath里的Bean来进行配置的一种机制。
+怎么用？通过在配置类里使用@EnableAutoConfiguration 或者@SpringBootApplication注解 开启组件扫描和自动配置。 通过@SpringBootApplication的exclude参数关闭特定 的自动配置。@SpringBootApplication(exclude = XAutoConfiguration.class)
+怎么实现的？查看源码，下一页ppt
+spring-boot-autoconfigure-1.5.6.RELEASE.jar包 EnableAutoConfiguration
+使用@SpringbootApplication注解  可以解决根类或者配置类（就是main所在类）头上注解过多的问题，一个@SpringbootApplication相当于@Configuration,@EnableAutoConfiguration和 @ComponentScan 并具有他们的默认属性值
+
+怎么实现的？ 
+查看源码
+spring-boot-autoconfigure-1.5.6.RELEASE.jar包 EnableAutoConfiguration
+这里起关键作用的是@Import注解导入的配置功能。 EnableAutoConfigurationImportSelector使用SpringFactoriesLoader.loadFactoryNames 方法来扫描具有META-INF/spring.factories文件里的jar包，spring.factories文件中声明了 有哪些自动配置。 打开AutoConfiguration的Java源文件，可以看到有 @ConditionalOnClass @ConditionalOnBean @ConditionalOnMissingBean @ConditionalOnJava 等这些注解
+这些注解都是组合了@Conditional元注解，例如@ConditionalOnWebApplication注解</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/24/Spring-MybBatis整合/" data-id="cjyhgcrq80000ukl14sv7gk67" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/12/Spring-SpringBoot/" data-id="cjyhhncz2000174l1s14sj3lx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -116,21 +132,53 @@
   
     <article id="post-Spring-SpringMVC" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/07/24/Spring-SpringMVC/" class="article-date">
-  <time datetime="2019-07-24T15:25:27.402Z" itemprop="datePublished">2019-07-24</time>
+    <a href="/2019/04/12/Spring-SpringMVC/" class="article-date">
+  <time datetime="2019-04-12T05:02:28.000Z" itemprop="datePublished">2019-04-12</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/12/Spring-SpringMVC/">&#39;Spring-SpringMVC&#39;</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <blockquote>
+<p>SpringMVC是什么？  </p>
+</blockquote>
+<p>springmvc给spring的表现层提供支持<br>请求驱动类型的轻量级Web框架<br>使用了MVC架构模式的思想，将Web层进行职责解耦  </p>
+<blockquote>
+<p>核心类介绍<br>ContextLoaderListener</p>
+</blockquote>
+<p>ContextLoaderListener继承自ContextLoader并且实现了ServletContextListener接口，实现ServletContextListener作用不言而喻，就是要让Spring和Servlet容器关联起来，让Spring容器伴随着Servlet容器的启动而启动，其实这个类中最主要的一个方法就是contextInitialized()，作用就是Spring上下文初始化</p>
+<p>ContextLoaderListener的作用就是启动Web容器时，读取在contextConfigLocation中定义的xml文件，自动装配ApplicationContext的配置信息，并产生WebApplicationContext对象，然后将这个对象放置在ServletContext的属性里，这样我们只要得到Servlet就可以得到WebApplicationContext对象，并利用这个对象访问spring容器管理的bean。</p>
+<blockquote>
+<p>核心类介绍 DispatcherServlet</p>
+</blockquote>
+<p>DispatcherServlet是前置控制器，配置在web.xml文件中的。拦截匹配的请求，Servlet拦截匹配规则要自己定义，把拦截下来的请求，依据相应的规则分发到目标Controller来处理，是配置spring MVC的第一步。<br>DispatcherServlet是前端控制器设计模式的实现，提供Spring Web MVC的集中访问点，而且负责职责的分派，而且与Spring IoC容器无缝集成，从而可以获得Spring的所有好处。<br>1 初始化<br>1.1 HttpServletBean 的 init() 方法<br>DispatcherServlet 的 init() 方法在其父类 HttpServletBean 中实现的，它覆盖了 GenericServlet 的 init() 方法，主要作用是加载 web.xml 中 DispatcherServlet 的 <init-param> 配置，并调用子类的初始化。<br>1.2 FrameworkServlet 的 initServletBean() 方法<br>在 HttpServletBean 的 init() 方法中调用了 initServletBean() 这个方法，它是在 FrameworkServlet 类中实现的，主要作用是建立 WebApplicationContext 容器（有时也称上下文），并加载 SpringMVC 配置文件中定义的 Bean 到该容器中，最后将该容器添加到 ServletContext 中。<br>WebApplicationContext 继承于 ApplicationContext 接口，从容器中可以获取当前应用程序环境信息，它也是 SpringMVC 的 IOC 容器。<br>1.3建立好 WebApplicationContext(上下文) 后，通过 DispatcherServlet 的onRefresh(ApplicationContext context) 方法回调，进入 DispatcherServlet 类中。onRefresh() 方法，提供 SpringMVC 的初始化，onRefresh() 中的initStrategies方法下一页PPT详细介绍。</init-param></p>
+<blockquote>
+<p>DispatcherServlet ：initStrategies方法初始化9大步</p>
+</blockquote>
+<p>1、initMultipartResolver：初始化MultipartResolver，用于处理文件上传服务，如果有文件上传，那么就会将当前的HttpServletRequest包装成DefaultMultipartHttpServletRequest，并且将每个上传的内容封装成CommonsMultipartFile对象。需要在dispatcherServlet-servlet.xml中配置文件上传解析器。<br>2、initLocaleResolver：用于处理应用的国际化问题，本地化解析策略。<br>3、initThemeResolver：用于定义一个主题。<br>4、initHandlerMapping：用于定义请求映射关系。<br>5、initHandlerAdapters：用于根据Handler的类型定义不同的处理规则。<br>6、initHandlerExceptionResolvers：当Handler处理出错后，会通过此将错误日志记录在log文件中，默认实现类是SimpleMappingExceptionResolver。<br>7、initRequestToViewNameTranslators：将指定的ViewName按照定义的<br> RequestToViewNameTranslators替换成想要的格式。<br>8、initViewResolvers：用于将View解析成页面。<br>9、initFlashMapManager：用于生成FlashMap管理器。</p>
+<pre><code>DispatcherServlet ：实现了Servlet接口的实现类
+大致流程：
+Servlet容器加载Servlet类，把类的.class文件中的数据读到内存中；
+Servlet容器中创建一个ServletConfig对象。该对象中包含了Servlet的初始化配置信息；
+Servlet容器创建一个Servlet对象；
+Servlet容器调用Servlet对象的init()方法进行初始化</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/24/Spring-SpringMVC/" data-id="cjyhgcrqp0002ukl1iqvb1vaw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/12/Spring-SpringMVC/" data-id="cjyhhncz6000274l1180dhcif" class="article-share-link">Share</a>
       
       
     </footer>
@@ -142,21 +190,161 @@
   
     <article id="post-Spring-扩展" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/07/24/Spring-扩展/" class="article-date">
-  <time datetime="2019-07-24T15:25:06.908Z" itemprop="datePublished">2019-07-24</time>
+    <a href="/2019/04/12/Spring-扩展/" class="article-date">
+  <time datetime="2019-04-12T05:02:28.000Z" itemprop="datePublished">2019-04-12</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/12/Spring-扩展/">&#39;Spring-扩展&#39;</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>ApplicationContext</p>
+<blockquote>
+<p>包含BeanFactory所有功能，绝大多数典型的企业应用和系统，ApplicationContext就是你需要使用的</p>
+</blockquote>
+<pre><code>在使用BeanFactory接口时，我们一般都是使用这个实现类：XmlBeanFactory。  
+然而ApplicationContext作为BeanFactory的子接口，使用它作为Spring容器会更加方便。它的实现类有：FileSystemXmlApplicationContext、ClassPathXmlApplicationContext、AnnotationConfigApplicationContext。
+创建Spring容器实例时，必须提供Spring容器管理的Bean的详细配置信息。Spring的配置信息通常采用xml配置文件来设置，因此，创建BeanFactory实例时，应该提供XML配置文件作为参数。
+XML配置文件通常使用Resource对象传入。Resource接口是Spring提供的资源访问接口，通过使用该接口，Spring能够以简单、透明的方式访问磁盘、类路径以及网络上的资源。
+如果应用里面有多个属性配置文件，则应该采用BeanFactory的子接ApplicationContext来创建BeanFactory的实例。
+ApplicationContext通常使用如下两个实现类：
+FileSystemXmlApplicationContext：以基于文件系统的XML配置文件创建ApplicationContext实例。
+ClassPathXmlApplicationContext：以类加载路径下的XML配置文件创建的ApplicationContext实例。</code></pre><p>AbstractApplicationContext<br>refresh方法  </p>
+<pre><code>（1）初始化前的准备工作，例如对系统属性或者环境变量进行准备及 验证。
+      在某种情况下项目的使用需要读取某些系统变量，二这个变量的设置很可能会影响系统的正确性，那么ClassPathXmlApplicationContext为我们提供的这个准备函数就显得非常必要，它可以在Spring启动的时候提前对必须的变量进行存在性验证。
+（2）初始化BeanFactory，并进行XML文件读取。
+  之前有提到ClassPathXmlApplicationContext包含着BeanFactory所提供的一切特征，那么这一步骤中将会复用BeanFactory中的配置文件读取解析及其它功能，这一步之后，ClassPathXmlApplicationContext实际上就已经包含了BeanFactory所提供的功能，也就是可以进行Bean的提取等基础操作了。
+（3）对BeanFactory进行各种功能填充。
+    是否允许bean覆盖，是否允许循环依赖等。
+（4）子类覆盖方法做额外的处理
+  Spring之所以强大，为世人所推崇，除了它功能上为大家提供了便利外，还有一方面是它的完美架构，开放式的架构让使用它的程序员很容易根据业务需要扩展已经存在的功能。这种开放式的设计在Spring中随处可见，例如在本例中就提供了一个空的函数实现postProcessBeanFactory来方便程序员在业务上做进一步的扩展。
+（5）激活各种BeanFactory处理器
+（6）注册拦截bean创建的bean处理器，这里只是注册，真正的调  用是在getBean时候。
+（7）为上下文初始化Message源，即对不同语言的消息体进行国际化处理。
+（8）初始化应用消息广播器，并放入“applicationEventMulticaster” bean中。
+（9）留给子类来初始化其它的bean。
+（10）在所有注册的bean中查找listener bean，注册到消息广播器中。
+（11）初始化剩下的单实例（非惰性的）.
+（12）完成刷新过程，通知生命周期处理器lifecycleProcessor刷新过程，同时发出ContextRefreshEvent通知别人。
+
+BeanFactoryPostProcessor接口跟BeanPostProcessor类似，可以对bean的定义（配置元数据）进行处理。也就是说，Spring Ioc容器允许BeanFactoryPostProcessor在容器实例化任何其他的bean之前读取配置元数据，并有可能修改它。如果你愿意，你可以配置多个BeanFactoryPostProcessor。你还能通过设置order属性来控制BeanFactoryPostProcessor的执行次序（仅当BeanFactoryPostProcessor实现了ordered接口时你才可以设置此属性，因此在实现BeanFactoryPostProcessor时，就应当考虑实现Ordered接口）。</code></pre><blockquote>
+<p>如果你想改变实际的bean实例（例如从配置元数据创建的对象），那么你最好使用BeanPostProcessor。同样，BeanFactoryPostProcessor的作用域范围是容器级的，它只和你所使用的容器有关。如果你在容器中定义一个BeanFactoryPostProcessor，它仅仅对此容器中的bean进行后置处理。BeanFactoryPostProcessor不会对定义在另一个容器中的bean进行后置处理，即使这两个容器都是在同一层次上。</p>
+</blockquote>
+<p>Aop（Aspect Oriented Programming）增强  </p>
+<blockquote>
+<p>静态代理：<br>程序运行前已存在代理类的字节码文件，代理类和原始类的关系在运行前已确定。<br>优点：<br>业务类只需要关注业务逻辑本身，保证了业务类的重用性。这是代理的共有优点。<br>缺点：<br>1）代理对象的一个接口只服务于一种类型的对象，如果要代理的方法很多，势必要为每一种方法都进行代理，静态代理在程序规模稍大时就无法胜任了。<br>2）如果接口增加一个方法，除了所有实现类需要实现这个方法外，所有代理类也需要实现此方法。增加了代码维护的复杂度。  </p>
+</blockquote>
+<blockquote>
+<p>动态代理：<br>动态代理类的源码是在程序运行期间通过JVM反射等机制动态生成，代理类和委托类的关系是运行时确定<br>Sprng动态代理两种方式 jdk和cglib<br>JDK提供的动态代理<br>被代理的对象必须要有接口<br>①被代理类实现接口<br>②代理类实现InvocationHandler接口<br>③通过Proxy.newProxyInstance创建代理对象<br>④重写InvocationHandler接口的invoker方法，实现在不修改原来代码的前提下动态扩展<br>cglib提供的动态代理<br>通过继承方式<br>proxy-target-class此属性默认为false，改为true开启cglib</p>
+</blockquote>
+<pre><code>&lt;aop:aspectj-autoproxy proxy-target-class=&quot;true&quot;/&gt;</code></pre><blockquote>
+<p>因为是继承，所以final类或方法不能代理</p>
+</blockquote>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/24/Spring-扩展/" data-id="cjyhgcrqs0003ukl10015fk76" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/12/Spring-扩展/" data-id="cjyhhnczj000374l1drlzmkf1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Spring-解析与加载" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/12/Spring-解析与加载/" class="article-date">
+  <time datetime="2019-04-12T05:02:28.000Z" itemprop="datePublished">2019-04-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/12/Spring-解析与加载/">&#39;Spring-解析与加载&#39;</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>思考为什么要用Spring？</p>
+<p>1.方便解耦，便于开发（Spring就是一个大工厂，可以将所有对象的创建和依赖关系维护都交给spring管理）<br>2.spring支持aop（Aspect Oriented Programming）（spring提供面向切面编程，可以很方便的实现对程序进行权限拦截和运行监控等功能）<br>3.声明式事务的支持（通过配置就完成对事务的支持，不需要手动编程）<br>4.方便集成各种优秀的框架（MyBatis、Hibernate、Quartz等）<br>5.降低javaEE API的使用难度（Spring 对javaEE开发中非常难用的一些API 例如JDBC,javaMail,远程调用等，都提供了封装，使这些API应用难度大大降低）<br>6.方便程序的测试，spring 对junit4支持，可以通过注解方便的测试spring 程序</p>
+<p>Spring强大的背景：<br>从2004年1.0版本发布到2013年 Pivotal宣布发布Spring4.0，到2017 5.0版本，<br>PS：Pivotal（公司相关产品Springboot、SpringCloud、RabbitMQ、Greenplum、Redis等，汇集全球一流开发者）  </p>
+<p>Spring之前的历史<br>在Spring框架没有开发出来时，Java EE是以Sun公司（已经被Oracle公司收购，不复存在）所制定的EJB（Enterprise Java Bean）作为标准的。</p>
+<p>在“遥远”的EJB年代，开发一个EJB需要大量的接口和配置文件，直至EJB 2.0的年代，开发一个EJB还需要配置两个文件，其结果就是配置的工作量比开发的工作量还要大。<br>其次EJB是运行在EJB容器中的，而Sun公司定义的JSP和Servlet却是运行在Web容器中的，于是你可以想象得到，你需要使用Web容器去调用EJB容器的服务。这就意味着存在以下的弊端：需要增加调用的配置文件才能让Web容器调用EJB容器；与此同时需要开发两个容器，非常多的配置内容和烦琐的规范导致开发效率十分低下，这非常让当时的开发者诟病；对于Web容器调用EJB容器的服务这种模式，注定了需要通过网络传递，造成性能不佳；对于测试人员还需要了解许多EJB烦琐的细节，才能进行配置和测试，这样测试也难以进行。</p>
+<p>传统方式和Spring方式对比：<br>      传统方式：决定使用哪一个具体实现是由应用程序负责的，在编译阶段就确定了。<br>      Spring方式：调用类只依赖接口，而不依赖具体的实现类，减少了耦合。控制权交给了容器，在运行期才由容器决定将具体的实现动态的“注入”到调用类的对象中。这也是使用IoC的根本原因。</p>
+<hr>
+<p>第一个Spring程序<br>1、Spring jar包依赖  </p>
+<pre><code>&lt;dependency&gt;
+&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+&lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+&lt;version&gt;  {spring.version}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre><p>2、bean.xml配置  </p>
+<pre><code>&lt;bean class=&quot;com.sf.first.spring.Hello&quot;/&gt;</code></pre><p>3、bean加载应用  </p>
+<pre><code>public class XmlBeanFactoryDemo {
+public static void main(String[] args) {
+    BeanFactory bf = new XmlBeanFactory(new ClassPathResource(&quot;bean.xml&quot;));
+    Hello hello = bf.getBean(Hello.class);
+    hello.sayHello();
+ }
+}</code></pre><hr>
+<p>核心类介绍<br>先了解下BeanFactory与FactoryBean<br>1、工厂Bean 即 FactoryBean。FactoryBean跟普通Bean不同，其返回的对象不是指定类的一个实例，而是该FactoryBean的getObject方法所返回的对象。传统的方式需要在<bean>中提供大量配置信息，配置方式灵活受限，这时采用编码方式会得到一个简单的方案，可实现该接口定制实例化bean逻辑。<br>2、BeanFactory，以Factory结尾，表示它是一个工厂类(接口)，用于管理Bean的一个工厂。在Spring中，BeanFactory是IOC容器的核心接口，它的职责包括：实例化、定位、配置应用程序中的对象及建立这些对象间的依赖。<br>DefaultListableBeanFactory 是整个 Bean 加载的核心部分，是 Spring 注册及加载 Bean 的默认实现，XmlBeanFactory 继承自 DefaultListableBeanFactory ，XmlBeanFactory 自定义了 XML 读取器 XmlBeanDefinitionReader,实现了个性化的 BeanDefinitionReader 读取。</bean></p>
+<img src="/2019/04/12/Spring-解析与加载/01.png" title="DefaultListableBeanFactory">
+
+<p>XmlBeanDefinitionReader</p>
+<img src="/2019/04/12/Spring-解析与加载/02.png" title="DefaultListableBeanFactory">
+
+<p>Xml 配置文件读取大致流程：<br>1、通过继承自AbstractBeanDefinitionReader中的方法，来使用 ResourLoader将资源文件路径转换对应的Resource文件;<br>2、通过DocumentLoader对Resource文件进行转换，将Resource文件转换为Document文件<br>3、通过实现BeanDefinitionDocumentReader的 DefaultBeanDefinitionDocumentReader类对Docment进行解析，并使用BeanDefinitionPareserDelegate对Element进行解析</p>
+<p>如何实现自定义的标签<br>1.创建需要扩展的组件<br>2.定义XSD文件描述组件内容<br>3.创建一个文件，实现BeanDefinitionParser接口，用来解析XSD文件中的定义和组件定义<br>4.创建Handler文件，扩展字NamespaceHandlerSupport,目的是将组件注册到Spring容器<br>5.编写Spring.handlers和Spring.schemas文件（通过这找到Handler、xsd文件）  </p>
+<hr>
+<p>Bean的加载  </p>
+<img src="/2019/04/12/Spring-解析与加载/03.png" title="DefaultListableBeanFactory">
+
+<pre><code>1）转换对应beanName  
+为什么需要转换beanName呢？因为传入的参数可能是别名，也可能是FactoryBean，所以需要一系列的解析，这些解析内容包括如下
+去除FactoryBean的修饰符，也就是如果name=&quot;&amp;aa&quot;,name会首先去除&amp;而使name=&quot;aa&quot;
+取指定alias所表示的最终beanName,例如别名A指向名称为B的bean则返回B；若别名A指向别名B，别名C又指向名称为C的bean则返回C。  
+2）尝试从缓存中加载实例
+单例在Spring的同一个容器中只会被创建一次，后续再获取bean,就直接从单例缓存中获取了。当然这里也只是尝试加载，首先尝试从缓存中加载，如果加载不成功则再次尝试从singletonFactories中加载，因为在创建单例bean的时候会存在依赖注入的情况。而在创建依赖的时候为了避免循环依赖，在Spring中创建bean的原则是不等bean创建完成就会将创建bean的ObjectFactory提早曝光加入到缓存中，一旦下一个bean创建时候需要依赖上一个bean则直接使用ObjectFactory。  
+3）bean的实例化
+如果从缓存中得到了bean的原始状态，则需要对bean进行实例化。缓存中记录的只是最原始的bean状态，并不一定是我们最终想要的bean,。例如win需要对工厂bean进行处理，那么这里得到的其实是工厂bean的初始状态，但是我们真正需要的是工厂bean中定义的factory-method方法中返回的bean,而getObjectForBeanInstance就是完成这个工作的。
+4）原型模式的依赖检查  
+只有在单例情况下才会尝试解决循环依赖，如果存在A中有B的属性，B中有A额的属性，那么当依赖注入的时候，就会产生当A还未创建完的时候因为对于B的创建再次返回创建A，造成循环依赖，也就是情况  isPrototypeCurrentlyInCreation(beanName)判断为true  
+5）检测parentBeanFactory  
+如果缓存没有数据的话直接转到父类工厂上去加载了,这是为什么呢？
+前提条件是：parentBeanFactory!=null&amp;&amp;!containsBeanDefinition(beanName)，parentBeanFactory!=null。parentBeanFactory如果为空，则其他一切都是浮云。最重要的是！containsBeanDefinition(beanName)，它是在检测如果当前加载的XML配置文件中不包含beanName所对应的配置就只能到parentBeanFactory去尝试下，然后再去递归调用getBean方法  
+6）将存储XML配置文件的GernericBeanDefinition转换为RootBeanDefinition  
+因为从XML配置文件中读取到的Bean信息存储在GernericBeanDefinition中的，但是所有的Bean后续处理都是针对于RootBeanDefinition的，所以这里需要进行一个转换，转换的同时如果父类bean不为空的话，则会一并合并父类的属性。  
+7）寻找依赖  
+因为bean的初始化过程中很可能会用到某些属性，而某些属性很可能是动态配置的，并且配置成依赖于其他的bean,那么这个时候就有必要先加载依赖的bean,所以在spring加载顺序中，在初始化某一个bean的时候首先会初始化这个bean所对应的依赖  
+8）针对不同的scope进行bean的创建  
+9）类型转换</code></pre><img src="/2019/04/12/Spring-解析与加载/04.png" title="DefaultListableBeanFactory">
+<img src="/2019/04/12/Spring-解析与加载/05.png" title="DefaultListableBeanFactory">
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/12/Spring-解析与加载/" data-id="cjyhhnczm000474l1r4ec1i17" class="article-share-link">Share</a>
       
       
     </footer>
@@ -168,13 +356,23 @@
   
     <article id="post-单元测试" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/07/24/单元测试/" class="article-date">
-  <time datetime="2019-07-24T15:21:21.329Z" itemprop="datePublished">2019-07-24</time>
+    <a href="/2019/04/12/单元测试/" class="article-date">
+  <time datetime="2019-04-12T05:02:28.000Z" itemprop="datePublished">2019-04-12</time>
 </a>
     
   </div>
   <div class="article-inner">
     
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/12/单元测试/">&#39;单元测试&#39;</a>
+    </h1>
+  
+
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
@@ -261,7 +459,7 @@ Error错误信息输入  </code></pre></blockquote>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/24/单元测试/" data-id="cjyhgcrsf0007ukl1489s0szj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/12/单元测试/" data-id="cjyhhnd3i000874l1pb8717f1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -271,23 +469,118 @@ Error错误信息输入  </code></pre></blockquote>
 
 
   
-    <article id="post-Spring-解析与加载" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Linux" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/07/24/Spring-解析与加载/" class="article-date">
-  <time datetime="2019-07-24T15:17:37.379Z" itemprop="datePublished">2019-07-24</time>
+    <a href="/2019/04/12/Linux/" class="article-date">
+  <time datetime="2019-04-12T05:02:28.000Z" itemprop="datePublished">2019-04-12</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/12/Linux/">&#39;Linux命令&#39;</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>系统信息<br>arch 显示机器的处理器架构(1)<br>uname -m 显示机器的处理器架构(2)<br>uname -r 显示正在使用的内核版本<br>dmidecode -q 显示硬件系统部件 (SMBIOS / DMI)<br>hdparm -i /dev/hda 罗列一个磁盘的架构特性<br>hdparm -tT /dev/sda 在磁盘上执行测试性读取操作<br>cat /proc/cpuinfo 显示CPU info的信息<br>cat /proc/interrupts 显示中断<br>cat /proc/meminfo 校验内存使用<br>cat /proc/swaps 显示哪些swap被使用<br>cat /proc/version 显示内核的版本<br>cat /proc/net/dev 显示网络适配器及统计<br>cat /proc/mounts 显示已加载的文件系统<br>lspci -tv 罗列 PCI 设备<br>lsusb -tv 显示 USB 设备<br>date 显示系统日期<br>cal 2007 显示2007年的日历表<br>date 041217002007.00 设置日期和时间 月日时分年.秒<br>clock -w 将时间修改保存到 BIOS   </p>
+<hr>
+<p>关机 (系统的关机、重启以及登出 )<br>shutdown -h now 关闭系统(1)<br>init 0 关闭系统(2)<br>telinit 0 关闭系统(3)<br>shutdown -h hours:minutes &amp; 按预定时间关闭系统<br>shutdown -c 取消按预定时间关闭系统<br>shutdown -r now 重启(1)<br>reboot 重启(2)<br>logout 注销   </p>
+<hr>
+<p>文件和目录<br>cd /home 进入 ‘/ home’ 目录’<br>cd .. 返回上一级目录<br>cd ../.. 返回上两级目录<br>cd 进入个人的主目录<br>cd ~user1 进入个人的主目录<br>cd 返回上次所在的目录<br>pwd 显示工作路径<br>ls 查看目录中的文件<br>ls -F 查看目录中的文件<br>ls -l 显示文件和目录的详细资料<br>ls -a 显示隐藏文件<br>ls <em>[0-9]</em> 显示包含数字的文件名和目录名<br>tree 显示文件和目录由根目录开始的树形结构(1)<br>lstree 显示文件和目录由根目录开始的树形结构(2)<br>mkdir dir1 创建一个叫做 ‘dir1’ 的目录’<br>mkdir dir1 dir2 同时创建两个目录<br>mkdir -p /tmp/dir1/dir2 创建一个目录树<br>rm -f file1 删除一个叫做 ‘file1’ 的文件’<br>rmdir dir1 删除一个叫做 ‘dir1’ 的目录’<br>rm -rf dir1 删除一个叫做 ‘dir1’ 的目录并同时删除其内容<br>rm -rf dir1 dir2 同时删除两个目录及它们的内容<br>mv dir1 new_dir 重命名/移动 一个目录<br>cp file1 file2 复制一个文件<br>cp dir/* . 复制一个目录下的所有文件到当前工作目录<br>cp -a /tmp/dir1 . 复制一个目录到当前工作目录<br>cp -a dir1 dir2 复制一个目录<br>ln -s file1 lnk1 创建一个指向文件或目录的软链接<br>ln file1 lnk1 创建一个指向文件或目录的物理链接<br>touch -t 0712250000 file1 修改一个文件或目录的时间戳 (YYMMDDhhmm)<br>file file1 outputs the mime type of the file as text<br>iconv -l 列出已知的编码<br>iconv -f fromEncoding -t toEncoding inputFile outputFile creates a new from the given input file by assuming it is encoded in fromEncoding and converting it to toEncoding.<br>find . -maxdepth 1 -name *.jpg -print -exec convert “{}” -resize 80x60 “thumbs/{}” ; batch resize files in the current directory and send them to a thumbnails directory (requires convert from Imagemagick)   </p>
+<hr>
+<p>文件搜索<br>find / -name file1 从 ‘/‘ 开始进入根文件系统搜索文件和目录<br>find / -user user1 搜索属于用户 ‘user1’ 的文件和目录<br>find /home/user1 -name *.bin 在目录 ‘/ home/user1’ 中搜索带有’.bin’ 结尾的文件<br>find /usr/bin -type f -atime +100 搜索在过去100天内未被使用过的执行文件<br>find /usr/bin -type f -mtime -10 搜索在10天内被创建或者修改过的文件<br>find / -name *.rpm -exec chmod 755 ‘{}’ ; 搜索以 ‘.rpm’ 结尾的文件并定义其权限<br>find / -xdev -name *.rpm 搜索以 ‘.rpm’ 结尾的文件，忽略光驱、捷盘等可移动设备<br>locate *.ps 寻找以 ‘.ps’ 结尾的文件 先运行 ‘updatedb’ 命令<br>whereis halt 显示一个二进制文件、源码或man的位置<br>which halt 显示一个二进制文件或可执行文件的完整路径   </p>
+<hr>
+<p>挂载一个文件系统<br>mount /dev/hda2 /mnt/hda2 挂载一个叫做hda2的盘 确定目录 ‘/ mnt/hda2’ 已经存在<br>umount /dev/hda2 卸载一个叫做hda2的盘 先从挂载点 ‘/ mnt/hda2’ 退出<br>fuser -km /mnt/hda2 当设备繁忙时强制卸载<br>umount -n /mnt/hda2 运行卸载操作而不写入 /etc/mtab 文件当文件为只读或当磁盘写满时非常有用<br>mount /dev/fd0 /mnt/floppy 挂载一个软盘<br>mount /dev/cdrom /mnt/cdrom 挂载一个cdrom或dvdrom<br>mount /dev/hdc /mnt/cdrecorder 挂载一个cdrw或dvdrom<br>mount /dev/hdb /mnt/cdrecorder 挂载一个cdrw或dvdrom<br>mount -o loop file.iso /mnt/cdrom 挂载一个文件或ISO镜像文件<br>mount -t vfat /dev/hda5 /mnt/hda5 挂载一个Windows FAT32文件系统<br>mount /dev/sda1 /mnt/usbdisk 挂载一个usb 捷盘或闪存设备<br>mount -t smbfs -o username=user,password=pass //WinClient/share /mnt/share 挂载一个windows网络共享   </p>
+<hr>
+<p>磁盘空间<br>df -h 显示已经挂载的分区列表<br>ls -lSr |more 以尺寸大小排列文件和目录<br>du -sh dir1 估算目录 ‘dir1’ 已经使用的磁盘空间’<br>du -sk * | sort -rn 以容量大小为依据依次显示文件和目录的大小<br>rpm -q -a –qf ‘%10{SIZE}t%{NAME}n’ | sort -k1,1n 以大小为依据依次显示已安装的rpm包所使用的空间 (fedora, redhat类系统)<br>dpkg-query -W -f=’${Installed-Size;10}t${Package}n’ | sort -k1,1n 以大小为依据显示已安装的deb包所使用的空间 (ubuntu, debian类系统)   </p>
+<hr>
+<p>用户和群组<br>groupadd group_name 创建一个新用户组<br>groupdel group_name 删除一个用户组<br>groupmod -n new_group_name old_group_name 重命名一个用户组<br>useradd -c “Name Surname “ -g admin -d /home/user1 -s /bin/bash user1 创建一个属于 “admin” 用户组的用户<br>useradd user1 创建一个新用户<br>userdel -r user1 删除一个用户 ( ‘-r’ 排除主目录)<br>usermod -c “User FTP” -g system -d /ftp/user1 -s /bin/nologin user1 修改用户属性<br>passwd 修改口令<br>passwd user1 修改一个用户的口令 (只允许root执行)<br>chage -E 2005-12-31 user1 设置用户口令的失效期限<br>pwck 检查 ‘/etc/passwd’ 的文件格式和语法修正以及存在的用户<br>grpck 检查 ‘/etc/passwd’ 的文件格式和语法修正以及存在的群组<br>newgrp group_name 登陆进一个新的群组以改变新创建文件的预设群组   </p>
+<p>返回顶部</p>
+<p>文件的权限 使用 “+” 设置权限，使用 “-“ 用于取消<br>ls -lh 显示权限<br>ls /tmp | pr -T5 -W$COLUMNS 将终端划分成5栏显示<br>chmod ugo+rwx directory1 设置目录的所有人(u)、群组(g)以及其他人(o)以读（r ）、写(w)和执行(x)的权限<br>chmod go-rwx directory1 删除群组(g)与其他人(o)对目录的读写执行权限<br>chown user1 file1 改变一个文件的所有人属性<br>chown -R user1 directory1 改变一个目录的所有人属性并同时改变改目录下所有文件的属性<br>chgrp group1 file1 改变文件的群组<br>chown user1:group1 file1 改变一个文件的所有人和群组属性<br>find / -perm -u+s 罗列一个系统中所有使用了SUID控制的文件<br>chmod u+s /bin/file1 设置一个二进制文件的 SUID 位 运行该文件的用户也被赋予和所有者同样的权限<br>chmod u-s /bin/file1 禁用一个二进制文件的 SUID位<br>chmod g+s /home/public 设置一个目录的SGID 位 类似SUID ，不过这是针对目录的<br>chmod g-s /home/public 禁用一个目录的 SGID 位<br>chmod o+t /home/public 设置一个文件的 STIKY 位 只允许合法所有人删除文件<br>chmod o-t /home/public 禁用一个目录的 STIKY 位   </p>
+<p>文件的特殊属性 使用 “+” 设置权限，使用 “-“ 用于取消<br>chattr +a file1 只允许以追加方式读写文件<br>chattr +c file1 允许这个文件能被内核自动压缩/解压<br>chattr +d file1 在进行文件系统备份时，dump程序将忽略这个文件<br>chattr +i file1 设置成不可变的文件，不能被删除、修改、重命名或者链接<br>chattr +s file1 允许一个文件被安全地删除<br>chattr +S file1 一旦应用程序对这个文件执行了写操作，使系统立刻把修改的结果写到磁盘<br>chattr +u file1 若文件被删除，系统会允许你在以后恢复这个被删除的文件<br>lsattr 显示特殊的属性   </p>
+<p>打包和压缩文件<br>bunzip2 file1.bz2 解压一个叫做 ‘file1.bz2’的文件<br>bzip2 file1 压缩一个叫做 ‘file1’ 的文件<br>gunzip file1.gz 解压一个叫做 ‘file1.gz’的文件<br>gzip file1 压缩一个叫做 ‘file1’的文件<br>gzip -9 file1 最大程度压缩<br>rar a file1.rar test_file 创建一个叫做 ‘file1.rar’ 的包<br>rar a file1.rar file1 file2 dir1 同时压缩 ‘file1’, ‘file2’ 以及目录 ‘dir1’<br>rar x file1.rar 解压rar包<br>unrar x file1.rar 解压rar包<br>tar -cvf archive.tar file1 创建一个非压缩的 tarball<br>tar -cvf archive.tar file1 file2 dir1 创建一个包含了 ‘file1’, ‘file2’ 以及 ‘dir1’的档案文件<br>tar -tf archive.tar 显示一个包中的内容<br>tar -xvf archive.tar 释放一个包<br>tar -xvf archive.tar -C /tmp 将压缩包释放到 /tmp目录下<br>tar -cvfj archive.tar.bz2 dir1 创建一个bzip2格式的压缩包<br>tar -xvfj archive.tar.bz2 解压一个bzip2格式的压缩包<br>tar -cvfz archive.tar.gz dir1 创建一个gzip格式的压缩包<br>tar -xvfz archive.tar.gz 解压一个gzip格式的压缩包<br>zip file1.zip file1 创建一个zip格式的压缩包<br>zip -r file1.zip file1 file2 dir1 将几个文件和目录同时压缩成一个zip格式的压缩包<br>unzip file1.zip 解压一个zip格式压缩包   </p>
+<p>RPM 包 （Fedora, Redhat及类似系统）<br>rpm -ivh package.rpm 安装一个rpm包<br>rpm -ivh –nodeeps package.rpm 安装一个rpm包而忽略依赖关系警告<br>rpm -U package.rpm 更新一个rpm包但不改变其配置文件<br>rpm -F package.rpm 更新一个确定已经安装的rpm包<br>rpm -e package_name.rpm 删除一个rpm包<br>rpm -qa 显示系统中所有已经安装的rpm包<br>rpm -qa | grep httpd 显示所有名称中包含 “httpd” 字样的rpm包<br>rpm -qi package_name 获取一个已安装包的特殊信息<br>rpm -qg “System Environment/Daemons” 显示一个组件的rpm包<br>rpm -ql package_name 显示一个已经安装的rpm包提供的文件列表<br>rpm -qc package_name 显示一个已经安装的rpm包提供的配置文件列表<br>rpm -q package_name –whatrequires 显示与一个rpm包存在依赖关系的列表<br>rpm -q package_name –whatprovides 显示一个rpm包所占的体积<br>rpm -q package_name –scripts 显示在安装/删除期间所执行的脚本l<br>rpm -q package_name –changelog 显示一个rpm包的修改历史<br>rpm -qf /etc/httpd/conf/httpd.conf 确认所给的文件由哪个rpm包所提供<br>rpm -qp package.rpm -l 显示由一个尚未安装的rpm包提供的文件列表<br>rpm –import /media/cdrom/RPM-GPG-KEY 导入公钥数字证书<br>rpm –checksig package.rpm 确认一个rpm包的完整性<br>rpm -qa gpg-pubkey 确认已安装的所有rpm包的完整性<br>rpm -V package_name 检查文件尺寸、 许可、类型、所有者、群组、MD5检查以及最后修改时间<br>rpm -Va 检查系统中所有已安装的rpm包小心使用<br>rpm -Vp package.rpm 确认一个rpm包还未安装<br>rpm2cpio package.rpm | cpio –extract –make-directories <em>bin</em> 从一个rpm包运行可执行文件<br>rpm -ivh /usr/src/redhat/RPMS/<code>arch</code>/package.rpm 从一个rpm源码安装一个构建好的包<br>rpmbuild –rebuild package_name.src.rpm 从一个rpm源码构建一个 rpm 包   </p>
+<p>YUM 软件包升级器 （Fedora, RedHat及类似系统）<br>yum install package_name 下载并安装一个rpm包<br>yum localinstall package_name.rpm 将安装一个rpm包，使用你自己的软件仓库为你解决所有依赖关系<br>yum update package_name.rpm 更新当前系统中所有安装的rpm包<br>yum update package_name 更新一个rpm包<br>yum remove package_name 删除一个rpm包<br>yum list 列出当前系统中安装的所有包<br>yum search package_name 在rpm仓库中搜寻软件包<br>yum clean packages 清理rpm缓存删除下载的包<br>yum clean headers 删除所有头文件<br>yum clean all 删除所有缓存的包和头文件   </p>
+<p>DEB 包 (Debian, Ubuntu 以及类似系统)<br>dpkg -i package.deb 安装/更新一个 deb 包<br>dpkg -r package_name 从系统删除一个 deb 包<br>dpkg -l 显示系统中所有已经安装的 deb 包<br>dpkg -l | grep httpd 显示所有名称中包含 “httpd” 字样的deb包<br>dpkg -s package_name 获得已经安装在系统中一个特殊包的信息<br>dpkg -L package_name 显示系统中已经安装的一个deb包所提供的文件列表<br>dpkg –contents package.deb 显示尚未安装的一个包所提供的文件列表<br>dpkg -S /bin/ping 确认所给的文件由哪个deb包提供   </p>
+<p>APT 软件工具 (Debian, Ubuntu 以及类似系统)<br>apt-get install package_name 安装/更新一个 deb 包<br>apt-cdrom install package_name 从光盘安装/更新一个 deb 包<br>apt-get update 升级列表中的软件包<br>apt-get upgrade 升级所有已安装的软件<br>apt-get remove package_name 从系统删除一个deb包<br>apt-get check 确认依赖的软件仓库正确<br>apt-get clean 从下载的软件包中清理缓存<br>apt-cache search searched-package 返回包含所要搜索字符串的软件包名称   </p>
+<p>查看文件内容<br>cat file1 从第一个字节开始正向查看文件的内容<br>tac file1 从最后一行开始反向查看一个文件的内容<br>more file1 查看一个长文件的内容<br>less file1 类似于 ‘more’ 命令，但是它允许在文件中和正向操作一样的反向操作<br>head -2 file1 查看一个文件的前两行<br>tail -2 file1 查看一个文件的最后两行<br>tail -f /var/log/messages 实时查看被添加到一个文件中的内容   </p>
+<p>文本处理<br>cat file1 file2 … | command &lt;file1_in.txt_or_file1_out.txt general syntax for text manipulation using PIPE, STDIN and STDOUT<br>cat file1 | command( sed, grep, awk, grep, etc…) result.txt 合并一个文件的详细说明文本，并将简介写入一个新文件中<br>cat file1 | command( sed, grep, awk, grep, etc…) &gt;result.txt 合并一个文件的详细说明文本，并将简介写入一个已有的文件中<br>grep Aug /var/log/messages 在文件 ‘/var/log/messages’中查找关键词”Aug”<br>grep ^Aug /var/log/messages 在文件 ‘/var/log/messages’中查找以”Aug”开始的词汇<br>grep [0-9] /var/log/messages 选择 ‘/var/log/messages’ 文件中所有包含数字的行<br>grep Aug -R /var/log/* 在目录 ‘/var/log’ 及随后的目录中搜索字符串”Aug”<br>sed ‘s/stringa1/stringa2/g’ example.txt 将example.txt文件中的 “string1” 替换成 “string2”<br>sed ‘/^$/d’ example.txt 从example.txt文件中删除所有空白行<br>sed ‘/ <em>#/d; /^$/d’ example.txt 从example.txt文件中删除所有注释和空白行<br>echo ‘esempio’ | tr ‘[:lower:]’ ‘[:upper:]’ 合并上下单元格内容<br>sed -e ‘1d’ result.txt 从文件example.txt 中排除第一行<br>sed -n ‘/stringa1/p’ 查看只包含词汇 “string1”的行<br>sed -e ‘s/ *$//‘ example.txt 删除每一行最后的空白字符<br>sed -e ‘s/stringa1//g’ example.txt 从文档中只删除词汇 “string1” 并保留剩余全部<br>sed -n ‘1,5p;5q’ example.txt 查看从第一行到第5行内容<br>sed -n ‘5p;5q’ example.txt 查看第5行<br>sed -e ‘s/00</em>/0/g’ example.txt 用单个零替换多个零<br>cat -n file1 标示文件的行数<br>cat example.txt | awk ‘NR%2==1’ 删除example.txt文件中的所有偶数行<br>echo a b c | awk ‘{print $1}’ 查看一行第一栏<br>echo a b c | awk ‘{print $1,$3}’ 查看一行的第一和第三栏<br>paste file1 file2 合并两个文件或两栏的内容<br>paste -d ‘+’ file1 file2 合并两个文件或两栏的内容，中间用”+”区分<br>sort file1 file2 排序两个文件的内容<br>sort file1 file2 | uniq 取出两个文件的并集(重复的行只保留一份)<br>sort file1 file2 | uniq -u 删除交集，留下其他的行<br>sort file1 file2 | uniq -d 取出两个文件的交集(只留下同时存在于两个文件中的文件)<br>comm -1 file1 file2 比较两个文件的内容只删除 ‘file1’ 所包含的内容<br>comm -2 file1 file2 比较两个文件的内容只删除 ‘file2’ 所包含的内容<br>comm -3 file1 file2 比较两个文件的内容只删除两个文件共有的部分   </p>
+<p>字符设置和文件格式转换<br>dos2unix filedos.txt fileunix.txt 将一个文本文件的格式从MSDOS转换成UNIX<br>unix2dos fileunix.txt filedos.txt 将一个文本文件的格式从UNIX转换成MSDOS<br>recode ..HTML &lt; page.txt page.html 将一个文本文件转换成html<br>recode -l | more 显示所有允许的转换格式   </p>
+<p>文件系统分析<br>badblocks -v /dev/hda1 检查磁盘hda1上的坏磁块<br>fsck /dev/hda1 修复/检查hda1磁盘上linux文件系统的完整性<br>fsck.ext2 /dev/hda1 修复/检查hda1磁盘上ext2文件系统的完整性<br>e2fsck /dev/hda1 修复/检查hda1磁盘上ext2文件系统的完整性<br>e2fsck -j /dev/hda1 修复/检查hda1磁盘上ext3文件系统的完整性<br>fsck.ext3 /dev/hda1 修复/检查hda1磁盘上ext3文件系统的完整性<br>fsck.vfat /dev/hda1 修复/检查hda1磁盘上fat文件系统的完整性<br>fsck.msdos /dev/hda1 修复/检查hda1磁盘上dos文件系统的完整性<br>dosfsck /dev/hda1 修复/检查hda1磁盘上dos文件系统的完整性   </p>
+<p>初始化一个文件系统<br>mkfs /dev/hda1 在hda1分区创建一个文件系统<br>mke2fs /dev/hda1 在hda1分区创建一个linux ext2的文件系统<br>mke2fs -j /dev/hda1 在hda1分区创建一个linux ext3(日志型)的文件系统<br>mkfs -t vfat 32 -F /dev/hda1 创建一个 FAT32 文件系统<br>fdformat -n /dev/fd0 格式化一个软盘<br>mkswap /dev/hda3 创建一个swap文件系统   </p>
+<p>SWAP文件系统<br>mkswap /dev/hda3 创建一个swap文件系统<br>swapon /dev/hda3 启用一个新的swap文件系统<br>swapon /dev/hda2 /dev/hdb3 启用两个swap分区   </p>
+<p>备份<br>dump -0aj -f /tmp/home0.bak /home 制作一个 ‘/home’ 目录的完整备份<br>dump -1aj -f /tmp/home0.bak /home 制作一个 ‘/home’ 目录的交互式备份<br>restore -if /tmp/home0.bak 还原一个交互式备份<br>rsync -rogpav –delete /home /tmp 同步两边的目录<br>rsync -rogpav -e ssh –delete /home ip_address:/tmp 通过SSH通道rsync<br>rsync -az -e ssh –delete ip_addr:/home/public /home/local 通过ssh和压缩将一个远程目录同步到本地目录<br>rsync -az -e ssh –delete /home/local ip_addr:/home/public 通过ssh和压缩将本地目录同步到远程目录<br>dd bs=1M if=/dev/hda | gzip | ssh user@ip_addr ‘dd of=hda.gz’ 通过ssh在远程主机上执行一次备份本地磁盘的操作<br>dd if=/dev/sda of=/tmp/file1 备份磁盘内容到一个文件<br>tar -Puf backup.tar /home/user 执行一次对 ‘/home/user’ 目录的交互式备份操作<br>( cd /tmp/local/ &amp;&amp; tar c . ) | ssh -C user@ip_addr ‘cd /home/share/ &amp;&amp; tar x -p’ 通过ssh在远程目录中复制一个目录内容<br>( tar c /home ) | ssh -C user@ip_addr ‘cd /home/backup-home &amp;&amp; tar x -p’ 通过ssh在远程目录中复制一个本地目录<br>tar cf . | (cd /tmp/backup ; tar xf ) 本地将一个目录复制到另一个地方，保留原有权限及链接<br>find /home/user1 -name ‘<em>.txt’ | xargs cp -av –target-directory=/home/backup/ –parents 从一个目录查找并复制所有以 ‘.txt’ 结尾的文件到另一个目录<br>find /var/log -name ‘</em>.log’ | tar cv –files-from=| bzip2 log.tar.bz2 查找所有以 ‘.log’ 结尾的文件并做成一个bzip包<br>dd if=/dev/hda of=/dev/fd0 bs=512 count=1 做一个将 MBR (Master Boot Record)内容复制到软盘的动作<br>dd if=/dev/fd0 of=/dev/hda bs=512 count=1 从已经保存到软盘的备份中恢复MBR内容   </p>
+<p>光盘<br>cdrecord -v gracetime=2 dev=/dev/cdrom -eject blank=fast -force 清空一个可复写的光盘内容<br>mkisofs /dev/cdrom cd.iso 在磁盘上创建一个光盘的iso镜像文件<br>mkisofs /dev/cdrom | gzip cd_iso.gz 在磁盘上创建一个压缩了的光盘iso镜像文件<br>mkisofs -J -allow-leading-dots -R -V “Label CD” -iso-level 4 -o ./cd.iso data_cd 创建一个目录的iso镜像文件<br>cdrecord -v dev=/dev/cdrom cd.iso 刻录一个ISO镜像文件<br>gzip -dc cd_iso.gz | cdrecord dev=/dev/cdrom 刻录一个压缩了的ISO镜像文件<br>mount -o loop cd.iso /mnt/iso 挂载一个ISO镜像文件<br>cd-paranoia -B 从一个CD光盘转录音轨到 wav 文件中<br>cd-paranoia -“-3” 从一个CD光盘转录音轨到 wav 文件中（参数-3）<br>cdrecord –scanbus 扫描总线以识别scsi通道<br>dd if=/dev/hdc | md5sum 校验一个设备的md5sum编码，例如一张 CD   </p>
+<p>网络 （以太网和WIFI无线）<br>ifconfig eth0 显示一个以太网卡的配置<br>ifup eth0 启用一个 ‘eth0’ 网络设备<br>ifdown eth0 禁用一个 ‘eth0’ 网络设备<br>ifconfig eth0 192.168.1.1 netmask 255.255.255.0 控制IP地址<br>ifconfig eth0 promisc 设置 ‘eth0’ 成混杂模式以嗅探数据包 (sniffing)<br>dhclient eth0 以dhcp模式启用 ‘eth0’<br>route -n show routing table<br>route add -net 0/0 gw IP_Gateway configura default gateway<br>route add -net 192.168.0.0 netmask 255.255.0.0 gw 192.168.1.1 configure static route to reach network ‘192.168.0.0/16’<br>route del 0/0 gw IP_gateway remove static route<br>echo “1” /proc/sys/net/ipv4/ip_forward activate ip routing<br>hostname show hostname of system<br>host <a href="http://www.example.com" target="_blank" rel="noopener">www.example.com</a> lookup hostname to resolve name to ip address and viceversa(1)<br>nslookup <a href="http://www.example.com" target="_blank" rel="noopener">www.example.com</a> lookup hostname to resolve name to ip address and viceversa(2)<br>ip link show show link status of all interfaces<br>mii-tool eth0 show link status of ‘eth0’<br>ethtool eth0 show statistics of network card ‘eth0’<br>netstat -tup show all active network connections and their PID<br>netstat -tupl show all network services listening on the system and their PID<br>tcpdump tcp port 80 show all HTTP traffic<br>iwlist scan show wireless networks<br>iwconfig eth1 show configuration of a wireless network card<br>hostname show hostname<br>host <a href="http://www.example.com" target="_blank" rel="noopener">www.example.com</a> lookup hostname to resolve name to ip address and viceversa<br>nslookup <a href="http://www.example.com" target="_blank" rel="noopener">www.example.com</a> lookup hostname to resolve name to ip address and viceversa<br>whois <a href="http://www.example.com" target="_blank" rel="noopener">www.example.com</a> lookup on Whois database   </p>
+<p>GO TOP INDEX ^<br>Microsoft Windows networks (SAMBA)<br>nbtscan ip_addr netbios name resolution<br>nmblookup -A ip_addr netbios name resolution<br>smbclient -L ip_addr/hostname show remote shares of a windows host<br>smbget -Rr smb://ip_addr/share like wget can download files from a host windows via smb<br>mount -t smbfs -o username=user,password=pass //WinClient/share /mnt/share mount a windows network share`  </p>
+<img src="/2019/04/12/Linux/img.jpg" title="这是一个新的博客的图片的说明">
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/24/Spring-解析与加载/" data-id="cjyhgcrqu0004ukl1qnkjlx1q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/12/Linux/" data-id="cjyhhvrdp000e74l1fix0a6gu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Spring-MyBatis整合" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/12/Spring-MyBatis整合/" class="article-date">
+  <time datetime="2019-04-12T05:02:28.000Z" itemprop="datePublished">2019-04-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/12/Spring-MyBatis整合/">&#39;Spring-MyBatis整合&#39;</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="MyBatis-（存储过程和高级映射的优秀持久层框架）"><a href="#MyBatis-（存储过程和高级映射的优秀持久层框架）" class="headerlink" title="MyBatis （存储过程和高级映射的优秀持久层框架）"></a>MyBatis （存储过程和高级映射的优秀持久层框架）</h1><blockquote>
+<p>MyBatis独立使用  </p>
+</blockquote>
+<p>（1）建立PO  用于对数据库中数据的映射<br>（2）建立Mapper<br>（3）建立配置文件<br>（4）建立映射文件。<br>（5）建立测试类。  </p>
+<blockquote>
+<p>Spring整合Mybatis </p>
+</blockquote>
+<p>（1）创建测试工程<br>（2）引入依赖 jar 包<br>（3）编写 Spring 配置文件<br>（4）编写 MyBatis 配置文件<br>（5）编写 Mapper 以及其他配置文件  </p>
+<blockquote>
+<p>Spring整合Mybatis </p>
+</blockquote>
+<p><strong>SqlSessionFactory的创建</strong><br>SqlSessionFactory 的核心功能是创建 SqlSession 接口，而 SqlSessionFactory 是通过 SqlSessionFactoryBuilder 去构建。</p>
+<p>构建步骤<br>1）XMLConfigBuilder 解析配置的XML文件，读出配置参数，然后将配置数据存放到 Configuration 类中。Mybatis 几乎所有的配置都在 Configuration  类中。<br>2）使用 Configuration  去创建 SqlSessionFactory ，Mybatis 的 SqlSessionFactory 是一个接口，而不是实现类。mybatis 提供了默认的 SqlSessionFactory  实现类，org.apache.ibatis.session.defaults.DefaultSqlSessionFactory。因此大多数情况下我们不需要自己去创建 SqlSessionFactory  的实现类。</p>
+<p><strong>MapperFactoryBean的创建</strong></p>
+<p>InitializingBean接口：实现了这个接口，那么当bean初始化的时候，spring就会调用该接口的实现类的afterPropertiesSet方法，去实现当spring初始化该Bean 的时候所需要的逻辑。<br>FactoryBean接口：实现了该接口的类，在调用getBean的时候会返回该工厂返回的实例对象，也就是再调一次getObject方法返回工厂的实例。<br>在使用mybatis的时候，我们获取dao的方式一般是这样： </p>
+<pre><code>SqlSession session=sessionFactory.openSession();
+PersonDao personDao=session.getMapper(PersonDao.class);      </code></pre><p>但在我们在spring的测试用例中使用mybatis的时候是这样使用的：  </p>
+<pre><code>PersonDao personDao=(PersonDao) context.getBean(&quot;personDao&quot;);    </code></pre><p>为什么spring可以这样做呢，答案就在MapperFactoryBean这里</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/12/Spring-MyBatis整合/" data-id="cjyhl2djg00002ol1i3esvttl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -323,7 +616,7 @@ Error错误信息输入  </code></pre></blockquote>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/30/SpringCloud入门/" data-id="cjyhgcrrk0006ukl17nqrz2vf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/30/SpringCloud入门/" data-id="cjyhhnd04000574l13snhf5sg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -355,7 +648,8 @@ Error错误信息输入  </code></pre></blockquote>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="用struts2-action-type-plaintext直接输出文本信息"><a href="#用struts2-action-type-plaintext直接输出文本信息" class="headerlink" title="用struts2 action type=plaintext直接输出文本信息"></a><a href="http://blog.csdn.net/linbooooo1987/article/details/7382713" target="_blank" rel="noopener">用struts2 action type=plaintext直接输出文本信息</a></h1><p>1.作用：将response中的数据直接打印到当前页面指定的地方</p>
+        <p>#用struts2 action type=plaintext直接输出文本信息</p>
+<p>1.作用：将response中的数据直接打印到当前页面指定的地方</p>
 <p>2.配置：</p>
 <pre><code>&lt;action name=&quot;test&quot; class=&quot;testAction&quot;method=&quot;test&quot;&gt;
 &lt;result name=&quot;success&quot; type=&quot;plainText&quot;&gt;
@@ -373,7 +667,7 @@ out.close();</code></pre><p>4.必须配置<param name="charSet">UTF-8否则会�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/12/struts2-01/" data-id="cjyhgcrsh0008ukl1erz5ageq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/12/struts2-01/" data-id="cjyhhnd3l000974l1obd2qlb3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -401,7 +695,7 @@ out.close();</code></pre><p>4.必须配置<param name="charSet">UTF-8否则会�
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li></ul>
     </div>
   </div>
 
@@ -414,23 +708,23 @@ out.close();</code></pre><p>4.必须配置<param name="charSet">UTF-8否则会�
       <ul>
         
           <li>
-            <a href="/2019/07/24/Spring-SpringBoot/">(no title)</a>
+            <a href="/2019/04/12/Spring-SpringBoot/">&#39;Spring-SpringBoot&#39;</a>
           </li>
         
           <li>
-            <a href="/2019/07/24/Spring-MybBatis整合/">(no title)</a>
+            <a href="/2019/04/12/Spring-SpringMVC/">&#39;Spring-SpringMVC&#39;</a>
           </li>
         
           <li>
-            <a href="/2019/07/24/Spring-SpringMVC/">(no title)</a>
+            <a href="/2019/04/12/Spring-扩展/">&#39;Spring-扩展&#39;</a>
           </li>
         
           <li>
-            <a href="/2019/07/24/Spring-扩展/">(no title)</a>
+            <a href="/2019/04/12/Spring-解析与加载/">&#39;Spring-解析与加载&#39;</a>
           </li>
         
           <li>
-            <a href="/2019/07/24/单元测试/">(no title)</a>
+            <a href="/2019/04/12/单元测试/">&#39;单元测试&#39;</a>
           </li>
         
       </ul>
